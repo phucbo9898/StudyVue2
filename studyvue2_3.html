@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <!-- Đảo chiều text sử dụng split tách chuỗi thành mảng kí tự,
+            reverse đảo chữ và join để chuyển chuỗi thành mảng -->
+      <!-- <h1>{{ mesage.split('').reverse().join('') }}</h1> -->
+
+      <!-- Sử dụng computed để quản lý các property -->
+      <!-- <h1>{{ reversedMessage }}</h1> -->
+
+      <h2>All task</h2>
+      <ul>
+        <li v-for="task in tasks" v-text="task.description"></li>
+      </ul>
+
+      <h2>Incomplete Tasks</h2>
+      <ul>
+        <li v-for="task in inCompletedTasks" v-text="task.description"></li>
+      </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+      //Sử dụng computed để đảo chiều chuỗi
+      // var app = new Vue({
+      //     el: '#root',
+      //     data: {
+      //         message: "Hello, world"
+      //     },
+
+      //     computed: {
+      //         reversedMessage() {
+      //             return this.message.split('').reverse().join('');
+      //         }
+      //     }
+      // });
+
+      var app = new Vue({
+        el: "#root",
+        data: {
+          tasks: [
+            { description: "Go to the store", completed: true },
+            { description: "Finish screencast", completed: false },
+            { description: "Make donation", completed: false },
+            { description: "Clear inbox", completed: false },
+            { description: "Make dinner", completed: false },
+            { description: "Clean room", completed: true },
+          ],
+        },
+
+        computed: {
+          inCompletedTasks() {
+            return this.tasks.filter((task) => !task.completed);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
